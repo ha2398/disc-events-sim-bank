@@ -6,9 +6,13 @@ Discrete-events simulator for a bank system with customer arrivals and departure
 
 The simulator can be used as following:
 
-./simulator [-d DURATION]
+./simulator -h -d DURATION -i INTERVAL
 
-DURATION: Maximum duration of the simulation. The default value is 1000.
+-h: Prints a help message.
+
+-d: Sets the maximum duration of the simulation to DURATION. The default value is 1000.
+
+-i: Sets the maximum possible time for randomly generated service and interarrivals time to INTERVAL. The default value is 50.
 
 ## Events
 
