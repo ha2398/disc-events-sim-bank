@@ -30,10 +30,10 @@ $(EXEC): $(OBJS)
 %.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
-.PHONY: clean
-clean:
-	rm -rf *.o *.a $(EXEC)
-
 .PHONY: clear
 clear:
-	rm -rf *.o *.a
+	rm -rf *.o *.a *.out *.txt
+
+.PHONY: clean
+clean: clear
+	rm -rf $(EXEC)

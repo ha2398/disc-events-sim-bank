@@ -3,6 +3,7 @@
  */
 
 #include "event.h"
+#include <stdbool.h>
 #include <stdlib.h>
 
 bool event_less(const void *event1, const void *event2)
@@ -12,24 +13,15 @@ bool event_less(const void *event1, const void *event2)
 	return (time1 < time2) ? true : false;
 }
 
-struct event *new_arrival(const unsigned long time)
+struct event *new_event(const unsigned short type, const unsigned long time,
+	const unsigned long line)
 {
-	struct event *new_event;
+	struct event *new;
 
-	new_event = malloc(sizeof(*new_event));
-	new_event->type = 1;
-	new_event->time = time;
+	new = malloc(sizeof(*new));
+	new->type = type;
+	new->time = time;
+	new->line = line;
 
-	return new_event;
-}
-
-struct event *new_departure(const unsigned long time)
-{
-	struct event *new_event;
-
-	new_event = malloc(sizeof(*new_event));
-	new_event->type = 0;
-	new_event->time = time;
-
-	return new_event;
+	return new;
 }

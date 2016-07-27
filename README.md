@@ -10,9 +10,15 @@ The simulator can be used as following:
 
 -h: Prints a help message.
 
--d: Sets the maximum duration of the simulation to DURATION. The default value is 1000.
+-d: Sets the maximum duration of the simulation to DURATION.
 
--i: Sets the maximum possible time for randomly generated service and interarrivals time to INTERVAL. The default value is 50.
+-s: Sets the maximum possible time for randomly generated service time to SERVICE.
+
+-i: Sets the maximum possible time for randomly generated interarrivals time to INTARRV.
+
+-l: Set the number of tellers and therefore lines to service customers.
+
+If any of these parameters is not provided, default values are used.
 
 ## Events
 
@@ -24,10 +30,12 @@ For arrivals, the new customer is added to the line. In case the new customer is
 
 Whenever an arrival event occur, a random interarrival time is generated, and so another arrival is scheduled.
 
+A new customer is always allocated to the line which has fewer customers.
+
 ### Departures
 
 When a departure happens, the number of customers in line decreases by one. If the line is not empty, the teller can begin a new service, and a new departure is scheduled.
 
 ## Output
 
-By collecting the total time to serve the customers until the end of the simulation and the number of custormers served, the program calculates the average running time and prints it on **stdout**.
+By collecting the total time to serve the customers until the end of the simulation and the number of customers served, the program calculates the average running time and prints it on **stdout**.
