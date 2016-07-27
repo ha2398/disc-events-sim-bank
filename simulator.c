@@ -53,6 +53,16 @@ static unsigned long get_min_line(const unsigned long *lines,
 	return min_line;
 }
 
+static __attribute__((noinline)) void pin_go(void)
+{
+        asm ("");
+}
+
+static __attribute__((noinline)) void pin_stop(void)
+{
+        asm ("");
+}
+
 int main(int argc, char **argv)
 {
 	unsigned long current_time; /* current simulation time */
@@ -125,19 +135,22 @@ int main(int argc, char **argv)
 	heap_push(events, new_event(ARRV, current_time + interarrival_time,
 		min_line));
 
+	pin_go();
 	/* Simulation */
 	while (current_time < duration) {
 		unsigned short type;
 		unsigned long time;
 		unsigned long line;
 
+		pin_stop();
 		next_event = heap_pop(events);
+		pin_go();
+
 		type = next_event->type;
 		time = next_event->time;
 		line = next_event->line;
 
 		free(next_event);
-
 		current_time = time;
 
 		switch (type) {
@@ -153,8 +166,10 @@ int main(int argc, char **argv)
 
 			if (customer_lines[line]) {
 				service_time = rand() % max_service;
+				pin_stop();
 				heap_push(events, new_event(DEPT, current_time
 					+ service_time, line));
+				pin_go();
 				total_waiting_time += service_time;
 			}
 
@@ -162,6 +177,7 @@ int main(int argc, char **argv)
 		case ARRV: /* arrival */
 			customer_lines[line]++;
 
+			pin_stop();
 			if (line == min_line)
 				min_line = get_min_line(customer_lines, num_lines);
 
@@ -169,8 +185,10 @@ int main(int argc, char **argv)
 			heap_push(events, new_event(ARRV, current_time +
 				interarrival_time, min_line));
 
+			pin_go();
 			if (customer_lines[line] == 1) {
 				service_time = rand() % max_service;
+				pin_stop();
 				heap_push(events, new_event(DEPT, current_time
 					+ service_time, line));
 			}
