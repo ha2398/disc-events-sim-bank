@@ -6,7 +6,7 @@ Discrete-events simulator for a bank system with customer arrivals and departure
 
 The simulator can be used as following:
 
-./simulator -h -d DURATION -i INTERVAL
+./simulator -h -d DURATION -s SERVICE -i INtARRV -l LINES
 
 -h: Prints a help message.
 
@@ -16,7 +16,7 @@ The simulator can be used as following:
 
 -i: Sets the maximum possible time for randomly generated interarrivals time to INTARRV.
 
--l: Set the number of tellers and therefore lines to service customers.
+-l: Set the number of tellers and therefore lines to service customers to LINES.
 
 If any of these parameters is not provided, default values are used.
 
