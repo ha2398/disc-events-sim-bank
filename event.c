@@ -10,6 +10,7 @@ bool event_less(const void *event1, const void *event2)
 {
 	unsigned long time1 = ((struct event *) event1)->time;
 	unsigned long time2 = ((struct event *) event2)->time;
+
 	return (time1 < time2) ? true : false;
 }
 

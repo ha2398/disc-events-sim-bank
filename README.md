@@ -6,7 +6,7 @@ Discrete-events simulator for a bank system with customer arrivals and departure
 
 The simulator can be used as following:
 
-./simulator -h -d DURATION -s SERVICE -i INtARRV -l LINES
+./simulator -h -d DURATION -s SERVICE -i INTARRV -l LINES
 
 -h: Prints a help message.
 

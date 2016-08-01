@@ -31,7 +31,7 @@ struct event {
  * @time: event time.
  * @line: event line.
  */
-struct event *new_event(const unsigned short type, const unsigned long time, 
+struct event *new_event(const unsigned short type, const unsigned long time,
 	const unsigned long line);
 
 /**
