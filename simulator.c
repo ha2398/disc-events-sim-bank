@@ -4,6 +4,7 @@
 
 #include "event.h"
 #include "heap.h"
+#include "pinap.h"
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -51,16 +52,6 @@ static unsigned long get_min_line(const unsigned long *lines,
 	}
 
 	return min_line;
-}
-
-static __attribute__((noinline)) void pin_go(void)
-{
-	asm ("");
-}
-
-static __attribute__((noinline)) void pin_stop(void)
-{
-	asm ("");
 }
 
 int main(int argc, char **argv)
